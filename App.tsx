@@ -22,6 +22,9 @@ import AntGroupScreen from './src/screens/AntGroupScreen';
 import MoreScreen from './src/screens/MoreScreen';
 import QuoteContentScreen from './src/screens/QuoteContentScreen';
 import InvestmentTipContentScreen from './src/screens/InvestmentTipContentScreen';
+import IPOChallengeScreen from './src/screens/IPOChallengeScreen';
+import StartInvestingScreen from './src/screens/StartInvestingScreen';
+import AffiliateProductsScreen from './src/screens/AffiliateProductsScreen';
 import EditTradeScreen from './src/screens/EditTradeScreen';
 import CustomTabBar from './src/components/CustomTabBar';
 import { COLORS } from './src/constants/theme';
@@ -35,6 +38,9 @@ export type RootStackParamList = {
   EditTrade: { entry: TradeEntry };
   QuoteContent: undefined;
   InvestmentTipContent: undefined;
+  IPOChallenge: undefined;
+  StartInvesting: undefined;
+  AffiliateProducts: undefined;
 };
 
 export type TabParamList = {
@@ -108,6 +114,21 @@ export default function App() {
           <Stack.Screen
             name="InvestmentTipContent"
             component={InvestmentTipContentScreen}
+            options={{ animation: 'slide_from_right' }}
+          />
+          <Stack.Screen
+            name="IPOChallenge"
+            component={IPOChallengeScreen}
+            options={{ animation: 'slide_from_right' }}
+          />
+          <Stack.Screen
+            name="StartInvesting"
+            component={StartInvestingScreen}
+            options={{ animation: 'slide_from_right' }}
+          />
+          <Stack.Screen
+            name="AffiliateProducts"
+            component={AffiliateProductsScreen}
             options={{ animation: 'slide_from_right' }}
           />
         </Stack.Navigator>

@@ -7,20 +7,22 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS, RADIUS } from '../constants/theme';
 import { RootStackParamList } from '../../App';
 
-type ContentRoute = keyof Pick<RootStackParamList, 'QuoteContent' | 'InvestmentTipContent'>;
+type MoreRoute = keyof Pick<
+  RootStackParamList,
+  'QuoteContent' | 'InvestmentTipContent' | 'IPOChallenge' | 'StartInvesting' | 'AffiliateProducts'
+>;
 
-interface ContentMenuItem {
+interface MenuItem {
   id: string;
   title: string;
   description: string;
   icon: keyof typeof MaterialCommunityIcons.glyphMap;
   iconColor: string;
   iconBg: string;
-  route: ContentRoute;
+  route: MoreRoute;
 }
 
-// To add new content: just add an item here.
-const CONTENT_MENU: ContentMenuItem[] = [
+const CONTENT_MENU: MenuItem[] = [
   {
     id: 'quote',
     title: '오늘의 명언',
@@ -39,11 +41,68 @@ const CONTENT_MENU: ContentMenuItem[] = [
     iconBg: 'rgba(245,158,11,0.1)',
     route: 'InvestmentTipContent',
   },
+  {
+    id: 'ipo-challenge',
+    title: '공모주 도전하기',
+    description: '투자 초보도 쉽게 시도하는 공모주 청약',
+    icon: 'rocket-launch-outline',
+    iconColor: '#10b981',
+    iconBg: 'rgba(16,185,129,0.1)',
+    route: 'IPOChallenge',
+  },
+  {
+    id: 'start-investing',
+    title: '투자 시작하기',
+    description: '아직 증권 계좌가 없는 예비 개미를 위한 쉽고 빠른 계좌 개설하기',
+    icon: 'bank-outline',
+    iconColor: '#8b5cf6',
+    iconBg: 'rgba(139,92,246,0.1)',
+    route: 'StartInvesting',
+  },
 ];
 
-export default function MoreScreen() {
+const AFFILIATE_MENU: MenuItem[] = [
+  {
+    id: 'affiliate-products',
+    title: '개미단 특가 상품',
+    description: '개인 투자자 필수 아이템 총망라',
+    icon: 'tag-multiple-outline',
+    iconColor: '#f97316',
+    iconBg: 'rgba(249,115,22,0.1)',
+    route: 'AffiliateProducts',
+  },
+];
+
+function MenuList({ items }: { items: MenuItem[] }) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  return (
+    <View style={styles.menuList}>
+      {items.map((item, index) => (
+        <TouchableOpacity
+          key={item.id}
+          style={[
+            styles.menuItem,
+            index === items.length - 1 && styles.menuItemLast,
+          ]}
+          onPress={() => navigation.navigate(item.route)}
+          activeOpacity={0.75}
+        >
+          <View style={[styles.iconWrap, { backgroundColor: item.iconBg }]}>
+            <MaterialCommunityIcons name={item.icon} size={24} color={item.iconColor} />
+          </View>
+          <View style={styles.menuText}>
+            <Text style={styles.menuTitle}>{item.title}</Text>
+            <Text style={styles.menuDesc}>{item.description}</Text>
+          </View>
+          <MaterialCommunityIcons name="chevron-right" size={20} color={COLORS.textDim} />
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+}
+
+export default function MoreScreen() {
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <View style={styles.header}>
@@ -51,31 +110,14 @@ export default function MoreScreen() {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* 콘텐츠 섹션 */}
         <View style={styles.section}>
           <Text style={styles.sectionLabel}>콘텐츠</Text>
-          <View style={styles.menuList}>
-            {CONTENT_MENU.map((item, index) => (
-              <TouchableOpacity
-                key={item.id}
-                style={[
-                  styles.menuItem,
-                  index === CONTENT_MENU.length - 1 && styles.menuItemLast,
-                ]}
-                onPress={() => navigation.navigate(item.route)}
-                activeOpacity={0.75}
-              >
-                <View style={[styles.iconWrap, { backgroundColor: item.iconBg }]}>
-                  <MaterialCommunityIcons name={item.icon} size={24} color={item.iconColor} />
-                </View>
-                <View style={styles.menuText}>
-                  <Text style={styles.menuTitle}>{item.title}</Text>
-                  <Text style={styles.menuDesc}>{item.description}</Text>
-                </View>
-                <MaterialCommunityIcons name="chevron-right" size={20} color={COLORS.textDim} />
-              </TouchableOpacity>
-            ))}
-          </View>
+          <MenuList items={CONTENT_MENU} />
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionLabel}>제휴</Text>
+          <MenuList items={AFFILIATE_MENU} />
         </View>
       </ScrollView>
     </SafeAreaView>
