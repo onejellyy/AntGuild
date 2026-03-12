@@ -43,5 +43,6 @@ yarn-error.*
 # IDE
 .idx/
 
-# Screenshots (root level)
-스크린샷*.png
+# Bug fix workflow
+NeedToFix/
+Fixed/
