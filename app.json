@@ -1,30 +1,49 @@
 {
   "expo": {
-    "name": "expo-init",
-    "slug": "expo-init",
+    "name": "개미단",
+    "slug": "million-won-rpg",
+    "owner": "onejelly",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/branding/icon.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/branding/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.onejelly.millionwonrpg"
     },
     "android": {
+      "package": "com.onejelly.millionwonrpg",
+      "versionCode": 1,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/branding/icon-android-fg.png"
       },
       "predictiveBackGestureEnabled": false
     },
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-7094140389853787~7372692434"
+        }
+      ]
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "router": {
+        "origin": "https://19006-firebase-begmanki-1772525134529.cluster-iktsryn7xnhpexlu6255bftka4.cloudworkstations.dev"
+      },
+      "eas": {
+        "projectId": "13da63d1-0029-47de-a851-02c4f5335983"
+      }
     }
   }
 }

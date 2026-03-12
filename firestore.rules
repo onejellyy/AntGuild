@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 유저 문서: 본인만 쓰기, 로그인한 유저 누구나 읽기 가능 (랭킹 프로필 조회)
+    match /users/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid;
+
+      // 포지션/거래 서브컬렉션: 쓰기는 본인만, 읽기는 로그인 유저 누구나 (프로필 조회용)
+      match /positions/{posId} {
+        allow read: if request.auth != null;
+        allow write: if request.auth != null && request.auth.uid == uid;
+      }
+      match /trades/{tradeId} {
+        allow read: if request.auth != null;
+        allow write: if request.auth != null && request.auth.uid == uid;
+      }
+      match /tradeEntries/{entryId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+
+    // 랭킹: 로그인한 유저 누구나 읽기 가능, 쓰기는 본인 문서만
+    match /ranking/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // 개미단 랭킹: 로그인한 유저 누구나 읽기 가능
+    match /groupRanking/{groupId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // 개미단: 로그인한 유저 누구나 읽기 가능
+    match /groups/{groupId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+
+      match /members/{uid} {
+        allow read: if request.auth != null;
+        allow write: if request.auth != null;
+      }
+      match /joinRequests/{uid} {
+        allow read: if request.auth != null;
+        allow write: if request.auth != null;
+      }
+    }
+  }
+}

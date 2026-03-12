@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trade Screen - Neo-Brutalist Style</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            manrope: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            brand: '#258cf4', // Custom color from theme
+            success: '#22c55e',
+            danger: '#ef4444',
+          },
+          borderWidth: {
+            '3': '3px',
+          },
+          boxShadow: {
+            'brutal': '4px 4px 0px 0px rgba(0,0,0,1)',
+            'brutal-sm': '2px 2px 0px 0px rgba(0,0,0,1)',
+            'brutal-active': '1px 1px 0px 0px rgba(0,0,0,1)',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-brutalist-styles">
+    body {
+      background-color: #f8fafc;
+      font-family: 'Manrope', sans-serif;
+      color: #1e293b;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      border-radius: 20px;
+    }
+    .premium-card {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      box-shadow: 10px 10px 20px #e2e8f0, -10px -10px 20px #ffffff;
+      border-radius: 20px;
+    }
+    .premium-button {
+      background: #ffffff;
+      border: 1px solid #f1f5f9;
+      box-shadow: 5px 5px 10px #e2e8f0, -5px -5px 10px #ffffff;
+      border-radius: 16px;
+      transition: all 0.2s ease;
+    }
+    .premium-button:active {
+      box-shadow: inset 5px 5px 10px #e2e8f0, inset -5px -5px 10px #ffffff;
+      transform: scale(0.98);
+    }
+    .action-button-buy {
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee4444 100%);
+      box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+      border-radius: 20px;
+      transition: all 0.2s ease;
+    }
+    .action-button-buy:active {
+      transform: scale(0.96);
+      box-shadow: 0 5px 10px rgba(239, 68, 68, 0.2);
+    }
+    .progress-bar-container {
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      height: 8px;
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #258cf4, #60a5fa);
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+<!-- BEGIN: MainContainer -->
+<main class="w-full max-w-md bg-[#f8fafc] min-h-screen relative flex flex-col pb-32"><header class="p-6 bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-white rounded-2xl p-0.5 shadow-sm border border-slate-100 overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover rounded-[14px]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSKv5D1MU-DkVSctdY9XXiRsySJNoMr3zXHl1NbDoYHV5hie7NopzZrcj9cd7dl0RG0dyXIECc0grdwVMhDNM9TQ0j6KtTbXT6NLdlemPuXtOl9TpQpXNdlEgUyyVWGAYpkMVWiMvT54ABGOpr1zfYI-9LEZbWfdhgI5218gSO_BlvcS6SSgw_Xet7GRrTjZVLb5QnSEszQ5pXK_ff2lX7B6tPYs3P_kyMmi9EwFwlpucCTwMYAuBzUn_z05PTxFGCYHsd7O7jTLM"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-extrabold text-lg text-slate-800">원젤리</span>
+<span class="bg-amber-100 text-amber-700 px-2 py-0.5 text-[10px] font-extrabold rounded-lg">Bronze III</span>
+<span class="text-slate-400 text-xs font-medium">#0001</span>
+</div>
+<div class="text-[10px] font-bold text-slate-400 mt-1 uppercase tracking-tighter">LV.13 까지 16,051.713원</div>
+</div>
+</div>
+<button class="w-10 h-10 premium-button flex items-center justify-center text-slate-500">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="w-full progress-bar-container">
+<div class="h-full progress-bar-fill" style="width: 12%"></div>
+</div>
+<div class="flex justify-between mt-2 px-0.5">
+<span class="text-[9px] font-extrabold text-brand uppercase tracking-widest">LV.12</span>
+<span class="text-[9px] font-bold text-slate-400">12 / 100 LP</span>
+</div>
+</header>
+<!-- BEGIN: HeaderSection -->
+<!-- END: HeaderSection -->
+<!-- BEGIN: SearchSection -->
+<section class="p-6">
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 ml-1">종목명</label>
+<div class="glass-card flex items-center p-4 gap-3 border border-slate-200/50 shadow-sm">
+<svg class="h-5 w-5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+<input class="w-full border-none bg-transparent focus:ring-0 p-0 font-semibold text-slate-700 placeholder-slate-300" placeholder="종목을 검색하세요" type="text"/>
+</div>
+</section>
+<!-- END: SearchSection -->
+<!-- BEGIN: InputSection -->
+<section class="px-6 grid grid-cols-2 gap-4">
+<!-- Unit Price -->
+<div>
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 ml-1">단가</label>
+<div class="neo-card p-4 flex flex-col gap-1">
+<span class="text-brand font-black text-xl">$</span>
+<div class="text-right font-black text-2xl">0</div>
+</div>
+</div>
+<!-- Quantity -->
+<div>
+<label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 ml-1">수량</label>
+<div class="neo-card p-4 flex flex-col gap-1">
+<div class="text-gray-400">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="text-right font-black text-2xl">0</div>
+</div>
+</div>
+</section>
+<!-- END: InputSection -->
+<!-- BEGIN: ActionButtons -->
+<section class="p-6 mt-4 flex gap-4 items-center">
+<!-- Buy Button -->
+<button class="flex-grow h-20 action-button-buy flex items-center justify-center">
+<span class="text-white font-extrabold text-2xl tracking-[0.2em]">(BUY)</span>
+</button>
+<!-- Sell Toggle Button -->
+<button class="w-20 h-20 premium-button bg-slate-50 flex flex-col items-center justify-center">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+</svg>
+<span class="text-xs font-black mt-1">매도</span>
+</button>
+</section>
+<!-- END: ActionButtons -->
+<!-- BEGIN: SummaryInfo -->
+<section class="px-6 grid grid-cols-2 gap-4">
+<div class="neo-card p-4">
+<div class="text-xs font-bold text-gray-500 mb-2">예상 결제 금액</div>
+<div class="text-xl font-black">₩ 0</div>
+</div>
+<div class="neo-card p-4">
+<div class="text-xs font-bold text-gray-500 mb-2">가용 자산</div>
+<div class="text-xl font-black text-brand">₩ 1,452,482</div>
+</div>
+</section>
+<!-- END: SummaryInfo -->
+<!-- BEGIN: NavigationTabBar -->
+<nav class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md glass-card px-4 py-3 flex justify-between items-center z-50 border border-white/60 shadow-xl">
+<!-- Trade (Active) -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center text-brand mb-1">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+</svg>
+</div>
+<span class="text-[10px] font-extrabold text-brand">거래</span>
+</div>
+<!-- History -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-bold text-gray-400">전적 기록</span>
+</div>
+<!-- Assets -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-bold text-gray-400">보유 종목</span>
+</div>
+<!-- Ranking -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-bold text-gray-400">랭킹</span>
+</div>
+<!-- Analysis -->
+<div class="flex flex-col items-center gap-1 flex-1">
+<svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-bold text-gray-400">시장 분석</span>
+</div>
+</nav>
+<!-- END: NavigationTabBar -->
+</main>
+<!-- END: MainContainer -->
+</body></html>

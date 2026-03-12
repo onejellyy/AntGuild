@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Sans+KR:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#197fe6",
+              "background-light": "#f6f7f8",
+              "background-dark": "#111921",
+            },
+            fontFamily: {
+              "display": ["Manrope", "Noto Sans KR"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .neumorphic-flat {
+            background: #f6f7f8;
+            box-shadow: 8px 8px 16px #e1e2e3, -8px -8px 16px #ffffff;
+        }
+        .neumorphic-inset {
+            background: #f6f7f8;
+            box-shadow: inset 6px 6px 12px #e1e2e3, inset -6px -6px 12px #ffffff;
+        }
+        .neumorphic-text {
+            color: #197fe6;
+            text-shadow: 2px 2px 4px #d1d2d3, -2px -2px 4px #ffffff;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header -->
+<div class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/10">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full neumorphic-flat">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Assets: Title &amp; Logo</h2>
+</div>
+</div>
+<main class="max-w-md mx-auto px-6 pb-24">
+<!-- Title Section -->
+<div class="pt-8 pb-4">
+<h2 class="text-slate-500 dark:text-slate-400 text-sm font-bold uppercase tracking-widest mb-2 px-2">Million Won Growth</h2>
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-extrabold tracking-tight">Resource Gallery</h1>
+</div>
+<!-- Primary Logo Section -->
+<div class="mt-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="text-slate-800 dark:text-slate-200 text-xl font-bold">Primary Logo</h2>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">Neumorphic 3D</span>
+</div>
+<div class="neumorphic-inset rounded-3xl p-12 flex flex-col items-center justify-center min-h-[220px]">
+<h1 class="neumorphic-text text-5xl font-black tracking-tighter mb-4 text-center leading-normal" style="font-family: 'Noto Sans KR';">
+                    백만원<br/>키우기
+                </h1>
+<p class="text-slate-400 text-sm font-medium">Soft Shadow Typography</p>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<div class="neumorphic-flat p-4 rounded-2xl flex flex-col items-center gap-2">
+<span class="text-xs text-slate-400 font-semibold">CSS Property</span>
+<span class="text-xs font-mono bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded">text-shadow: 2px 2px...</span>
+</div>
+<div class="neumorphic-flat p-4 rounded-2xl flex flex-col items-center gap-2 text-primary">
+<span class="material-symbols-outlined">download</span>
+<span class="text-xs font-bold uppercase">Download SVG</span>
+</div>
+</div>
+</div>
+<!-- Iconic Logo Section -->
+<div class="mt-12">
+<div class="flex items-center justify-between mb-4 px-2">
+<h2 class="text-slate-800 dark:text-slate-200 text-xl font-bold">Iconic Logo</h2>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">Glassmorphism</span>
+</div>
+<div class="neumorphic-flat rounded-3xl p-8 relative overflow-hidden flex flex-col items-center justify-center min-h-[260px] bg-gradient-to-br from-primary/5 to-transparent">
+<!-- Abstract background shapes for glass effect -->
+<div class="absolute top-10 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl"></div>
+<div class="absolute bottom-10 right-10 w-32 h-32 bg-blue-300/30 rounded-full blur-3xl"></div>
+<div class="glass-card w-40 h-40 rounded-[2.5rem] flex items-center justify-center relative z-10 shadow-xl">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary !text-7xl mb-1 drop-shadow-sm">savings</span>
+<div class="h-1.5 w-12 bg-primary/30 rounded-full"></div>
+</div>
+</div>
+<div class="mt-6 text-center">
+<p class="text-slate-800 dark:text-slate-200 font-bold text-lg">Growth Piggy Bank</p>
+<p class="text-slate-400 text-xs font-medium">App Icon Variant 1.0</p>
+</div>
+</div>
+<div class="mt-4 neumorphic-inset rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div class="flex-1">
+<p class="text-slate-800 dark:text-slate-100 text-sm font-bold">Primary Brand Color</p>
+<p class="text-slate-400 text-xs">#197FE6 (Energetic Blue)</p>
+</div>
+<button class="text-primary hover:bg-primary/5 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Asset Variations -->
+<div class="mt-12 mb-10">
+<h2 class="text-slate-800 dark:text-slate-200 text-xl font-bold mb-4 px-2">Mini Variants</h2>
+<div class="grid grid-cols-4 gap-4">
+<div class="neumorphic-flat aspect-square rounded-2xl flex items-center justify-center text-primary/60">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div class="neumorphic-flat aspect-square rounded-2xl flex items-center justify-center text-primary/60">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="neumorphic-flat aspect-square rounded-2xl flex items-center justify-center text-primary/60">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div class="neumorphic-flat aspect-square rounded-2xl flex items-center justify-center text-primary/60">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 z-50">
+<div class="max-w-md mx-auto flex gap-2 px-4 pb-4 pt-3">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined !text-[24px]">house</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined !text-[24px] fill-1">shapes</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Assets</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined !text-[24px]">leaderboard</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Stats</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined !text-[24px]">settings</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Settings</p>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "neumorphic-light": "#f0f2f5",
+                        "neumorphic-shadow-dark": "#d1d9e6",
+                        "neumorphic-shadow-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .neumorphic-card {
+            background: #f6f7f8;
+            box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+        }
+        .neumorphic-icon-container {
+            background: #f6f7f8;
+            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-slate-200 dark:border-slate-800 justify-between sticky top-0 z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">백만원 키우기 Assets</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 pb-24">
+<!-- App Icon Section -->
+<section class="p-4">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h2 class="text-slate-900 dark:text-slate-100 text-2xl font-extrabold tracking-tight">App Icon Assets</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Premium Neumorphic Design System</p>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Master Version</span>
+</div>
+<div class="space-y-8">
+<!-- 1024x1024 Large -->
+<div class="flex flex-col items-center">
+<div class="neumorphic-card w-64 h-64 rounded-[48px] flex items-center justify-center p-8 mb-4 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<div class="flex flex-col items-center justify-center text-primary z-10">
+<span class="material-symbols-outlined !text-8xl" style="font-variation-settings: 'FILL' 1, 'wght' 200;">savings</span>
+<span class="material-symbols-outlined !text-4xl -mt-4 opacity-80" style="font-variation-settings: 'FILL' 0, 'wght' 400;">show_chart</span>
+</div>
+</div>
+<div class="text-center">
+<p class="text-slate-900 dark:text-slate-100 text-lg font-bold">1024 × 1024</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-tight">App Store Original</p>
+</div>
+</div>
+<!-- Medium and Small Grid -->
+<div class="grid grid-cols-2 gap-6">
+<div class="flex flex-col items-center">
+<div class="neumorphic-card w-32 h-32 rounded-[24px] flex items-center justify-center p-4 mb-3">
+<div class="flex flex-col items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-5xl" style="font-variation-settings: 'FILL' 1, 'wght' 200;">savings</span>
+<span class="material-symbols-outlined !text-2xl -mt-2 opacity-80" style="font-variation-settings: 'FILL' 0, 'wght' 400;">show_chart</span>
+</div>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">512 × 512</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Standard Icon</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="neumorphic-card w-20 h-20 rounded-[16px] flex items-center justify-center p-2 mb-3">
+<div class="flex flex-col items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-3xl" style="font-variation-settings: 'FILL' 1, 'wght' 200;">savings</span>
+<span class="material-symbols-outlined !text-lg -mt-1 opacity-80" style="font-variation-settings: 'FILL' 0, 'wght' 400;">show_chart</span>
+</div>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">128 × 128</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">System Utility</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Favicon Section -->
+<section class="p-4 mt-8">
+<h2 class="text-slate-900 dark:text-slate-100 text-[22px] font-bold leading-tight tracking-tight mb-4">Favicon Version</h2>
+<div class="neumorphic-card rounded-xl p-6 flex items-center gap-6">
+<div class="neumorphic-icon-container size-16 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-3xl" style="font-variation-settings: 'FILL' 1;">savings</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">32 × 32 (Simplified)</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">A high-contrast simplified glyph optimized for browser tabs and minimal interfaces.</p>
+</div>
+</div>
+</section>
+<!-- Brand Palette -->
+<section class="p-4 mt-8">
+<h2 class="text-slate-900 dark:text-slate-100 text-[22px] font-bold leading-tight tracking-tight mb-4">Brand Color Palette</h2>
+<div class="grid grid-cols-1 gap-3">
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg shadow-sm"></div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Primary Blue</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">#197FE6</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">content_copy</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#f6f7f8] rounded-lg shadow-inner border border-slate-200 dark:border-slate-700"></div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Soft White</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">#F6F7F8</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">content_copy</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-[#637588] rounded-lg shadow-sm"></div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Neutral Gray</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">#637588</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-sm">content_copy</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-4 pb-4 pt-2 z-20">
+<div class="flex gap-2 max-w-md mx-auto">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<p class="text-xs font-medium">Assets</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">palette</span>
+<p class="text-xs font-medium">Colors</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-xs font-medium">Settings</p>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

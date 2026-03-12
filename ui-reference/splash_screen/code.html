@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Noto Sans KR", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .bg-mesh {
+            background-color: #f6f7f8;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(25, 127, 230, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(25, 127, 230, 0.1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(25, 127, 230, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(25, 127, 230, 0.1) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-mesh">
+<!-- Abstract Background Elements -->
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="z-10 flex flex-col items-center w-full max-w-md px-6">
+<!-- Logo Section with Glassmorphism -->
+<div class="glass-panel w-32 h-32 rounded-3xl flex items-center justify-center shadow-2xl shadow-primary/20 mb-10">
+<div class="bg-primary w-20 h-20 rounded-2xl flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined text-[48px]" style="font-variation-settings: 'FILL' 1">trending_up</span>
+</div>
+</div>
+<!-- Title Section -->
+<div class="text-center mb-16">
+<h1 class="text-slate-900 dark:text-slate-100 tracking-tight text-4xl font-extrabold leading-tight mb-2">
+                    백만원 키우기
+                </h1>
+<p class="text-primary font-semibold tracking-widest text-xs uppercase">
+                    Premium Wealth Growth Strategy
+                </p>
+</div>
+<!-- Loading/Progress Area -->
+<div class="w-full max-w-[280px] space-y-4">
+<div class="flex justify-between items-end px-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">자산 로딩 중...</p>
+<p class="text-primary text-sm font-bold">30%</p>
+</div>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 30%;"></div>
+</div>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] text-center pt-2">
+                    © 2024 Premium Asset Management. All rights reserved.
+                </p>
+</div>
+</div>
+<!-- Decorative Bottom Element -->
+<div class="absolute bottom-10 flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-sm">shield_with_heart</span>
+<span class="text-[10px] font-medium tracking-tighter">SECURE &amp; PRIVATE</span>
+</div>
+</div>
+<!-- Hidden Image Data for AI Generation Requirements -->
+<div class="hidden">
+<div data-alt="Modern abstract blue and white gradient background with soft mesh texture"></div>
+<div data-alt="Minimalist financial growth icon logo with blue background"></div>
+</div>
+</body></html>

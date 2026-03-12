@@ -1,0 +1,17 @@
+{
+  "generated": "2024-01-01",
+  "source": "KRX Data Marketplace (test mock)",
+  "count": 10,
+  "stocks": [
+    { "code": "005930", "name_ko": "삼성전자", "market": "KOSPI", "name_en": "Samsung Electronics" },
+    { "code": "000660", "name_ko": "SK하이닉스", "market": "KOSPI", "name_en": "SK Hynix" },
+    { "code": "035420", "name_ko": "NAVER", "market": "KOSPI", "name_en": "NAVER" },
+    { "code": "035720", "name_ko": "카카오", "market": "KOSPI", "name_en": "Kakao" },
+    { "code": "323410", "name_ko": "카카오뱅크", "market": "KOSPI", "name_en": "KakaoBank" },
+    { "code": "293490", "name_ko": "카카오게임즈", "market": "KOSDAQ", "name_en": "Kakao Games" },
+    { "code": "207940", "name_ko": "삼성바이오로직스", "market": "KOSPI", "name_en": "Samsung Biologics" },
+    { "code": "033780", "name_ko": "KT&G", "market": "KOSPI", "name_en": "KT&G" },
+    { "code": "035900", "name_ko": "JYP Ent.", "market": "KOSDAQ", "name_en": "JYP Entertainment" },
+    { "code": "066570", "name_ko": "LG전자", "market": "KOSPI", "name_en": "LG Electronics" }
+  ]
+}

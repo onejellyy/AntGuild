@@ -39,3 +39,9 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# IDE
+.idx/
+
+# Screenshots (root level)
+스크린샷*.png
