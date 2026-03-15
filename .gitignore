@@ -46,3 +46,4 @@ yarn-error.*
 # Bug fix workflow
 NeedToFix/
 Fixed/
+src/config/anthropic.ts

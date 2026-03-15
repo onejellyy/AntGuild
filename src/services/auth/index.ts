@@ -74,5 +74,7 @@ export async function deleteCurrentUser(): Promise<void> {
   const user = auth.currentUser;
   if (!user) throw new Error('로그인된 사용자가 없습니다.');
   await deleteUser(user);
+  await GoogleSignin.signOut();
+  await signOut(auth);
   await AsyncStorage.removeItem(UID_KEY);
 }

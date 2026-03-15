@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   Modal, View, Text, TouchableOpacity, ScrollView,
-  StyleSheet, Alert, ActivityIndicator, Switch,
+  StyleSheet, Alert, ActivityIndicator, Switch, Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { CommonActions, useNavigation } from '@react-navigation/native';
@@ -132,21 +132,21 @@ export default function SettingsModal({ visible, onClose }: Props) {
       title: '알림',
       rows: [
         { icon: 'notifications-outline', label: '푸시 알림', value: '켜짐' },
-        { icon: 'mail-outline', label: '이메일 알림', value: '꺼짐' },
-      ],
-    },
-    {
-      title: '게임',
-      rows: [
-        { icon: 'trophy-outline', label: '리그 정보', value: '백 리그' },
-        { icon: 'bar-chart-outline', label: '수익률 표시', value: '퍼센트' },
       ],
     },
     {
       title: '정보',
       rows: [
-        { icon: 'document-text-outline', label: '이용약관' },
-        { icon: 'shield-checkmark-outline', label: '개인정보처리방침' },
+        {
+          icon: 'document-text-outline',
+          label: '이용약관',
+          onPress: () => Linking.openURL('https://unexpected-chef-715.notion.site/Terms-of-Service-321983a4f9a0801ba83add9b788c6c39'),
+        },
+        {
+          icon: 'shield-checkmark-outline',
+          label: '개인정보처리방침',
+          onPress: () => Linking.openURL('https://unexpected-chef-715.notion.site/Privacy-Policy-321983a4f9a080adb152f1171b77cdc9?pvs=73'),
+        },
         { icon: 'information-circle-outline', label: '버전', value: '1.0.0' },
       ],
     },

@@ -1,71 +1,44 @@
-import React, { useCallback, useRef, useState } from 'react';
+/**
+ * 자동 투자기록 — 자동 전적 화면
+ */
+
+import React, { useEffect, useState } from 'react';
 import {
-  View, Text, FlatList, StyleSheet,
-  ListRenderItemInfo, TouchableOpacity, ActivityIndicator, Platform,
+  View, Text, FlatList, StyleSheet, ListRenderItemInfo,
+  ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { getProfile } from '../services/storage';
-import { Profile } from '../services/storage/types';
-import ProfileHeader from '../components/ProfileHeader';
-import { COLORS, RADIUS } from '../constants/theme';
-import { formatWon, formatRate, formatProfit, formatDate } from '../utils/formatters';
-import { subscribeAutoTrades } from '../features/notification-trade/infrastructure/autoTradeRepository';
-import { getActiveNotifications } from '../features/notification-trade/infrastructure/notificationListenerBridge';
-import { processNotificationUseCase } from '../features/notification-trade/application/processNotificationUseCase';
-import { AutoTradeRecord } from '../features/notification-trade/domain/types';
-import { getCurrentUid } from '../services/auth';
-import ImportImageButton from '../features/image-trade/ui/ImportImageButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../../App';
+import { COLORS, RADIUS } from '../../../constants/theme';
+import { formatWon, formatRate, formatProfit, formatDate } from '../../../utils/formatters';
+import { subscribeAutoTrades } from '../infrastructure/autoTradeRepository';
+import { AutoTradeRecord } from '../domain/types';
+import { getCurrentUid } from '../../../services/auth';
 
 const BROKER_LABELS: Record<string, string> = {
   'toss-securities': '토스증권',
   'kakaopay-securities': '카카오페이증권',
 };
 
-export default function TradesScreen() {
+type Props = NativeStackScreenProps<RootStackParamList, 'AutoTrades'>;
+
+export default function AutoTradesScreen({ navigation }: Props) {
   const [trades, setTrades] = useState<AutoTradeRecord[]>([]);
-  const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
-  const [syncing, setSyncing] = useState(false);
-  const syncingRef = useRef(false);
-  const unsubRef = useRef<(() => void) | null>(null);
 
-  useFocusEffect(
-    useCallback(() => {
-      getProfile().then(setProfile);
-
-      const uid = getCurrentUid();
-      if (!uid) { setLoading(false); return; }
-
-      const unsub = subscribeAutoTrades(uid, (data) => {
-        setTrades(data);
-        setLoading(false);
-      });
-      unsubRef.current = unsub;
-      return () => {
-        unsub();
-        unsubRef.current = null;
-      };
-    }, [])
-  );
-
-  const handleSync = async () => {
-    if (syncingRef.current || Platform.OS !== 'android') return;
+  useEffect(() => {
     const uid = getCurrentUid();
-    if (!uid) return;
-    syncingRef.current = true;
-    setSyncing(true);
-    try {
-      const notifications = await getActiveNotifications();
-      await Promise.all(notifications.map(n => processNotificationUseCase(uid, n)));
-    } catch {
-      // silent
-    } finally {
-      syncingRef.current = false;
-      setSyncing(false);
-    }
-  };
+    if (!uid) { setLoading(false); return; }
+
+    const unsub = subscribeAutoTrades(uid, (data) => {
+      setTrades(data);
+      setLoading(false);
+    });
+    return unsub;
+  }, []);
 
   const totalPnL = trades.reduce((s, t) => s + t.realizedPnL, 0);
   const wins = trades.filter(t => t.realizedPnL > 0).length;
@@ -122,38 +95,34 @@ export default function TradesScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
-      {profile && (
-        <ProfileHeader profile={profile} onProfileChange={setProfile} />
-      )}
-
-      <View style={styles.summary}>
-        <Text style={[styles.summaryWin, { color: COLORS.buy }]}>● {wins}승</Text>
-        <Text style={styles.summaryDot}>/</Text>
-        <Text style={[styles.summaryWin, { color: COLORS.sell }]}>● {losses}패</Text>
-        <View style={{ flex: 1 }} />
-        <ImportImageButton />
-        {Platform.OS === 'android' && (
-          <TouchableOpacity
-            onPress={handleSync}
-            disabled={syncing}
-            style={styles.syncBtn}
-            hitSlop={10}
-          >
-            {syncing ? (
-              <ActivityIndicator size={14} color={COLORS.primary} />
-            ) : (
-              <MaterialCommunityIcons name="refresh" size={16} color={COLORS.primary} />
-            )}
-            <Text style={styles.syncBtnText}>전적갱신</Text>
-          </TouchableOpacity>
-        )}
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          hitSlop={12}
+          style={styles.backBtn}
+        >
+          <MaterialCommunityIcons name="arrow-left" size={22} color={COLORS.textPrimary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>자동기록 전적</Text>
+        <View style={{ width: 34 }} />
       </View>
 
-      <View style={styles.pnlBanner}>
-        <Text style={styles.pnlLabel}>실현 손익</Text>
-        <Text style={[styles.pnlValue, { color: totalPnL >= 0 ? COLORS.buy : COLORS.sell }]}>
-          {formatProfit(totalPnL)}
-        </Text>
+      <View style={styles.summaryRow}>
+        <View style={styles.summaryItem}>
+          <Text style={styles.summaryLabel}>총 {trades.length}건</Text>
+          <Text style={styles.summarySubLabel}>
+            <Text style={{ color: COLORS.buy }}>{wins}승</Text>
+            {' '}
+            <Text style={{ color: COLORS.sell }}>{losses}패</Text>
+          </Text>
+        </View>
+        <View style={styles.summaryDivider} />
+        <View style={styles.summaryItem}>
+          <Text style={styles.summaryLabel}>실현 손익</Text>
+          <Text style={[styles.summaryPnL, { color: totalPnL >= 0 ? COLORS.buy : COLORS.sell }]}>
+            {formatProfit(totalPnL)}
+          </Text>
+        </View>
       </View>
 
       {loading ? (
@@ -163,8 +132,8 @@ export default function TradesScreen() {
       ) : trades.length === 0 ? (
         <View style={styles.empty}>
           <MaterialCommunityIcons name="chart-timeline-variant" size={48} color={COLORS.border} />
-          <Text style={styles.emptyText}>아직 전적이 없습니다.</Text>
-          <Text style={styles.emptySubText}>매도 체결 알림이 수신되면 자동으로 기록됩니다.</Text>
+          <Text style={styles.emptyText}>자동기록된 전적이 없습니다.</Text>
+          <Text style={styles.emptySubText}>매도 체결 알림이 수신되면 전적이 자동으로 생성됩니다.</Text>
         </View>
       ) : (
         <FlatList
@@ -180,45 +149,36 @@ export default function TradesScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLORS.bg },
-
-  summary: {
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 16,
-    paddingVertical: 10,
-    gap: 8,
+    paddingVertical: 14,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border,
+  },
+  backBtn: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center' },
+  headerTitle: {
+    flex: 1, textAlign: 'center',
+    fontSize: 17, fontWeight: '700',
+    color: COLORS.textPrimary,
+  },
+  summaryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     backgroundColor: COLORS.bgCard,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
   },
-  summaryWin: { fontSize: 13, fontWeight: '700' },
-  summaryDot: { fontSize: 13, color: COLORS.textDim },
-  syncBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: RADIUS.md,
-    backgroundColor: `${COLORS.primary}12`,
-  },
-  syncBtnText: { fontSize: 12, fontWeight: '700', color: COLORS.primary },
-
-  pnlBanner: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: COLORS.bgCard,
-    borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
-  },
-  pnlLabel: { fontSize: 12, color: COLORS.textSecondary, fontWeight: '600' },
-  pnlValue: { fontSize: 15, fontWeight: '800' },
-
+  summaryItem: { flex: 1, alignItems: 'center', gap: 3 },
+  summaryDivider: { width: 1, height: 32, backgroundColor: COLORS.border },
+  summaryLabel: { fontSize: 12, color: COLORS.textSecondary, fontWeight: '600' },
+  summarySubLabel: { fontSize: 13, fontWeight: '700' },
+  summaryPnL: { fontSize: 14, fontWeight: '800' },
   list: { paddingVertical: 8, paddingHorizontal: 12, gap: 8 },
-
   card: {
     backgroundColor: '#fff',
     borderRadius: RADIUS.lg,
@@ -273,7 +233,6 @@ const styles = StyleSheet.create({
   },
   footerText: { fontSize: 11, color: COLORS.textDim },
   rate: { fontSize: 13, fontWeight: '700' },
-
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   empty: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12 },
   emptyText: { fontSize: 16, color: COLORS.textSecondary, fontWeight: '600' },

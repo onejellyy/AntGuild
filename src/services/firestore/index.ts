@@ -476,8 +476,11 @@ export async function deleteUserFirestoreData(uid: string): Promise<void> {
     }
   }
 
-  // 2) 서브컬렉션 삭제 (positions, trades, tradeEntries)
-  const subCollections = ['positions', 'trades', 'tradeEntries'];
+  // 2) 서브컬렉션 삭제
+  const subCollections = [
+    'positions', 'trades', 'tradeEntries',
+    'autoTrades', 'autoHoldings', 'processedNotifications',
+  ];
   for (const col of subCollections) {
     const snap = await getDocs(collection(db, 'users', uid, col));
     if (snap.docs.length > 0) {
